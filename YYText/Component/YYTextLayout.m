@@ -363,7 +363,15 @@ dispatch_semaphore_signal(_lock);
     return [self layoutWithContainer:container text:text range:NSMakeRange(0, text.length)];
 }
 
++ (YYTextLayout *)layoutWithContainer:(YYTextContainer *)container text:(NSAttributedString *)text setCTLineOriginXToZero: (BOOL)toZero {
+    return [self layoutWithContainer:container text:text range:NSMakeRange(0, text.length) setCTLineOriginXToZero:toZero];
+}
+
 + (YYTextLayout *)layoutWithContainer:(YYTextContainer *)container text:(NSAttributedString *)text range:(NSRange)range {
+    return [self layoutWithContainer:container text:text range:NSMakeRange(0, text.length) setCTLineOriginXToZero:NO];
+}
+
++ (YYTextLayout *)layoutWithContainer:(YYTextContainer *)container text:(NSAttributedString *)text range:(NSRange)range setCTLineOriginXToZero: (BOOL)toZero {
     YYTextLayout *layout = NULL;
     CGPathRef cgPath = nil;
     CGRect cgPathBox = {0};
@@ -522,8 +530,10 @@ dispatch_semaphore_signal(_lock);
         CGPoint ctLineOrigin = lineOrigins[i];
         
         // https://github.com/ibireme/YYText/issues/930
-        // 不管rtl，还是ltr计算方式保持一致
-        ctLineOrigin.x = 0;
+        // 阿拉伯文字计算长度的时候设置toZero为Yes
+        if (toZero) {
+            ctLineOrigin.x = 0;
+        }
         
         // UIKit coordinate system
         CGPoint position;

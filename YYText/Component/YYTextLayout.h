@@ -173,6 +173,8 @@ extern const CGSize YYTextContainerMaxSize;
  @return A new layout, or nil when an error occurs.
  */
 + (nullable YYTextLayout *)layoutWithContainer:(YYTextContainer *)container text:(NSAttributedString *)text;
+/// 为了适配阿拉伯文字的计算，toZero传true
++ (nullable YYTextLayout *)layoutWithContainer:(YYTextContainer *)container text:(NSAttributedString *)text setCTLineOriginXToZero: (BOOL)toZero;
 
 /**
  Generate a layout with the given container and text.
