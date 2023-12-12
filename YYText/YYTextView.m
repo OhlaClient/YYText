@@ -22,7 +22,7 @@
 #import "NSAttributedString+YYText.h"
 #import "UIPasteboard+YYText.h"
 #import "UIView+YYText.h"
-
+#import "UIGraphicsImageRenderer+Extension.h"
 
 static double _YYDeviceSystemVersion() {
     static double version;
@@ -389,11 +389,20 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         CGSize size = [layout textBoundingSize];
         BOOL needDraw = size.width > 1 && size.height > 1;
         if (needDraw) {
-            UIGraphicsBeginImageContextWithOptions(size, NO, 0);
-            CGContextRef context = UIGraphicsGetCurrentContext();
-            [layout drawInContext:context size:size debug:self.debugOption];
-            UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
+            UIImage *image;
+            if (@available(iOS 10.0, *)) {
+                image = [UIGraphicsImageRenderer yy_render:size opaque:NO scale:0 actions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
+                    CGContextRef context = rendererContext.CGContext;
+                    [layout drawInContext:context size:size debug:self.debugOption];
+                }];
+            } else {
+                // Fallback on earlier versions
+            }
+//            UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+//            CGContextRef context = UIGraphicsGetCurrentContext();
+//            [layout drawInContext:context size:size debug:self.debugOption];
+//            UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//            UIGraphicsEndImageContext();
             _placeHolderView.image = image;
             frame.size = image.size;
             if (container.isVerticalForm) {

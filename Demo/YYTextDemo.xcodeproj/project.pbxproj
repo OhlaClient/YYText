@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18BB22AE2B28AA9D0013666B /* UIGraphicsImageRenderer+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BB22AD2B28AA9D0013666B /* UIGraphicsImageRenderer+Extension.m */; };
 		D91054861F3735D20007F224 /* Animated image support.txt in Resources */ = {isa = PBXBuildFile; fileRef = D910547B1F3735D20007F224 /* Animated image support.txt */; };
 		D91054871F3735D20007F224 /* YYAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D910547D1F3735D20007F224 /* YYAnimatedImageView.m */; };
 		D91054881F3735D20007F224 /* YYFrameImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D910547F1F3735D20007F224 /* YYFrameImage.m */; };
@@ -82,6 +83,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18BB22AC2B28AA9D0013666B /* UIGraphicsImageRenderer+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGraphicsImageRenderer+Extension.h"; sourceTree = "<group>"; };
+		18BB22AD2B28AA9D0013666B /* UIGraphicsImageRenderer+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGraphicsImageRenderer+Extension.m"; sourceTree = "<group>"; };
 		D910547B1F3735D20007F224 /* Animated image support.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Animated image support.txt"; sourceTree = "<group>"; };
 		D910547C1F3735D20007F224 /* YYAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAnimatedImageView.h; sourceTree = "<group>"; };
 		D910547D1F3735D20007F224 /* YYAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAnimatedImageView.m; sourceTree = "<group>"; };
@@ -233,6 +236,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18BB22A82B28A9C80013666B /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				18BB22AC2B28AA9D0013666B /* UIGraphicsImageRenderer+Extension.h */,
+				18BB22AD2B28AA9D0013666B /* UIGraphicsImageRenderer+Extension.m */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		D910547A1F3735D20007F224 /* YYImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +267,7 @@
 		D910548C1F3735E50007F224 /* YYText */ = {
 			isa = PBXGroup;
 			children = (
+				18BB22A82B28A9C80013666B /* Adapter */,
 				D910548D1F3735E50007F224 /* Component */,
 				D91054A01F3735E50007F224 /* String */,
 				D91054AB1F3735E50007F224 /* Utility */,
@@ -574,6 +587,7 @@
 				D91054D81F3735E50007F224 /* YYTextView.m in Sources */,
 				D91054F91F3736700007F224 /* NSString+YYAdd.m in Sources */,
 				D910548A1F3735D20007F224 /* YYImageCoder.m in Sources */,
+				18BB22AE2B28AA9D0013666B /* UIGraphicsImageRenderer+Extension.m in Sources */,
 				D91054D31F3735E50007F224 /* YYTextAsyncLayer.m in Sources */,
 				D91054C31F3735E50007F224 /* YYTextEffectWindow.m in Sources */,
 				D91054891F3735D20007F224 /* YYImage.m in Sources */,

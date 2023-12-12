@@ -10,18 +10,27 @@
 //
 
 #import "CALayer+YYAdd.h"
-
+#import "UIGraphicsImageRenderer+Extension.h"
 
 
 @implementation CALayer (YYAdd)
 
 - (UIImage *)snapshotImage {
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [self renderInContext:context];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+    if (@available(iOS 10.0, *)) {
+        return [UIGraphicsImageRenderer yy_render:self.bounds.size opaque:self.opaque scale:0 actions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
+            CGContextRef context = rendererContext.CGContext;
+            [self renderInContext:context];
+        }];
+    } else {
+        return nil;
+    }
+    
+//    UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    [self renderInContext:context];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return image;
 }
 
 - (NSData *)snapshotPDF {
